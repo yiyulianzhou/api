@@ -79,7 +79,7 @@ class Quotation extends MY_Controller {
 
 		//从quotation表中查出对应的字段
 
-		$data = $this->db->select('exchange_name,last, hight, low, degree, vol,exchange_icon')->get('quotation')->result_array();
+		$data = $this->db->select('exchange_name,last, high, low, degree, vol,exchange_icon')->get('quotation_test')->result_array();
 
 		if (empty($data)){
 
@@ -109,11 +109,11 @@ class Quotation extends MY_Controller {
 
 		//从news表中查出对应的字段
 
-		$this->db->select('exchange_name,last, hight, low, degree, vol,exchange_icon');
+		$this->db->select('exchange_name,last, high, low, degree, vol,exchange_icon');
 
 		$this->db->limit(5);
 
-		$data = $this->db->get('quotation')->result_array();
+		$data = $this->db->get('quotation_test')->result_array();
 
 		if (empty($data)){
 

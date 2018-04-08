@@ -265,11 +265,23 @@ class Find extends MY_Controller {
     public function get_company($id)
     {
         $this->db->select('name,avatar,basic,status,create_time,apply');
-
         $this->db->where('id = ',$id);
-
         $data = $this->db->get('company_test')->row_array();
+
+        $news = $this->get_news();
+        $data['news'] = $news;
+
         return $data;
+    }
+
+    public function get_news()
+    {
+
+        $this->db->select('id,amount,title,small_img,post_time,type');
+
+        $news = $this->db->limit(10)->get('news')->result_array();
+
+        return $news;
     }
 
     //人物详情数据
@@ -282,6 +294,10 @@ class Find extends MY_Controller {
         $this->db->where('id = ',$id);
 
         $data = $this->db->get('person_test')->row_array();
+
+        $news = $this->get_news();
+
+        $data['news'] = $news;
 
         return $data;
     }
@@ -297,6 +313,10 @@ class Find extends MY_Controller {
 
         $data = $this->db->get('event_test')->row_array();
 
+        $news = $this->get_news();
+
+        $data['news'] = $news;
+
         return $data;
     }
 
@@ -310,6 +330,10 @@ class Find extends MY_Controller {
         $this->db->where('id = ',$id);
 
         $data = $this->db->get('company_test')->row_array();
+
+        $news = $this->get_news();
+
+        $data['news'] = $news;
 
         return $data;
     }
@@ -325,6 +349,10 @@ class Find extends MY_Controller {
 
         $data = $this->db->get('company_test')->row_array();
 
+        $news = $this->get_news();
+
+        $data['news'] = $news;
+
         return $data;
     }
     //交易所详情数据
@@ -337,6 +365,10 @@ class Find extends MY_Controller {
         $this->db->where('id = ',$id);
 
         $data = $this->db->get('company_test')->row_array();
+
+        $news = $this->get_news();
+
+        $data['news'] = $news;
 
         return $data;
     }
@@ -351,6 +383,10 @@ class Find extends MY_Controller {
         $this->db->where('id = ',$id);
 
         $data = $this->db->get('company_test')->row_array();
+
+        $news = $this->get_news();
+
+        $data['news'] = $news;
 
         return $data;
     }
