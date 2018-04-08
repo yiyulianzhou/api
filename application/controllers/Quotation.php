@@ -92,5 +92,39 @@ class Quotation extends MY_Controller {
 			$this->outData(1,'获取数据成功',$data);
 		}
 	}
+
+	//url http://10.10.10.102/api/Quotation/search?exchange=btc
+	public function search()
+	{
+		$exchange = $this->input->get('exchange',true);
+
+		//exchange必须传
+		if (empty($exchange)) {
+
+			$this->outData('搜索条件必须',400);
+			exit();
+		}
+
+		$this->db->where('symbolId like','%'.$exchange.'%');
+
+		//从news表中查出对应的字段
+
+		$this->db->select('exchange_name,last, hight, low, degree, vol,exchange_icon');
+
+		$this->db->limit(5);
+
+		$data = $this->db->get('quotation')->result_array();
+
+		if (empty($data)){
+
+			//获取数据失败
+			$this->outData(0,'获取数据失败','');
+
+		}else{
+
+			//获取数据成功
+			$this->outData(1,'获取数据成功',$data);
+		}
+	}
 	
 }
